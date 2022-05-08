@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/Dynamics/pixel_dynamic.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Scripts/LevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
 
 [sub_resource type="Theme" id=2]
 
-[node name="Level Select" type="Control"]
+[node name="Level" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -273, 14 )
@@ -38,46 +38,9 @@ margin_bottom = -175.0
 rect_pivot_offset = Vector2( 130, 21 )
 theme = SubResource( 2 )
 custom_fonts/font = ExtResource( 1 )
-text = "Level Select"
+text = "Level"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Options" type="Control" parent="Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -179.0
-margin_top = -100.0
-margin_right = 179.0
-margin_bottom = 175.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="1" type="Button" parent="Panel/Options"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -41.5
-margin_right = 41.5
-margin_bottom = 20.0
-text = "Level 1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Return" type="Button" parent="Panel/Options"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -73.0
-margin_top = -20.0
-margin_right = 73.0
-text = "Return to Main Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
