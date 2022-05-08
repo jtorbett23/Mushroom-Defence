@@ -10,9 +10,9 @@ func _ready():
 
 func select_option(value):
 	match value:
+		"Return":
+			FancyFade.cross_fade(main_menu.instance())
 		_:
 			var new_level = level.instance()
 			new_level.setup(value)
 			FancyFade.cross_fade(new_level)
-		"Return":
-			FancyFade.cross_fade(main_menu.instance())

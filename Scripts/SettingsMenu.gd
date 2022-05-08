@@ -1,11 +1,11 @@
-extends Panel
+extends Control
 
-onready var options = $Options
+onready var options = $Panel/Options
 onready var main_menu = load("res://Scenes/Menu/MainMenu.tscn")
 
 func _ready():
-	$"Options/Music Volume".value = AudioManager.current_volume 
-	$"Options/Music Volume/Value".text = str(AudioManager.current_volume * 100) + "%" 
+	options.get_node("Music Volume").value = AudioManager.current_volume 
+	options.get_node("Music Volume/Value").text = str(AudioManager.current_volume * 100) + "%" 
 	for option in options.get_children():
 		match option.get_class():
 			"Button":
@@ -22,5 +22,5 @@ func handle_slider(value, slider):
 func select_option(action):
 	match action:
 		"Return":
-			FancyFade.cross_fade(main_menu.instance())
+			get_tree().queue_delete(self)
 

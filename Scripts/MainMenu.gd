@@ -14,7 +14,8 @@ func select_option(action):
 		"Start":
 			FancyFade.cross_fade(level_select.instance())
 		"Settings":
-			FancyFade.cross_fade(settings.instance())
+			var settings_instance = settings.instance()
+			add_child(settings_instance)
 		"Quit":
 			get_tree().quit()
 		
