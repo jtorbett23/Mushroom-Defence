@@ -1,7 +1,7 @@
 extends Panel
 
 onready var options = $Options
-onready var main_menu = load("res://Scenes/MainMenu.tscn")
+onready var main_menu = load("res://Scenes/Menu/MainMenu.tscn")
 
 func _ready():
 	$"Options/Music Volume".value = AudioManager.current_volume 

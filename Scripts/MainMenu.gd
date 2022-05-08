@@ -1,8 +1,8 @@
 extends Control
 
 onready var options = $Options
-onready var level_select = load("res://Scenes/LevelSelect.tscn")
-onready var settings = load("res://Scenes/SettingsMenu.tscn")
+onready var level_select = load("res://Scenes/Menu/LevelSelect.tscn")
+onready var settings = load("res://Scenes/Menu/SettingsMenu.tscn")
 
 func _ready():
 	AudioManager.set_music("menu")

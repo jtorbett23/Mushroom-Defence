@@ -1,7 +1,7 @@
 extends Control
 
 onready var options = $Panel/Options
-onready var main_menu = load("res://Scenes/MainMenu.tscn")
+onready var main_menu = load("res://Scenes/Menu/MainMenu.tscn")
 onready var level = load("res://Scenes/Level.tscn")
 
 func _ready():
