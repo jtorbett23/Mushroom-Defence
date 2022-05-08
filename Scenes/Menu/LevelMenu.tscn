@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/SideMenu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+
+[node name="LevelMenu" type="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = -251.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Control" parent="Panel"]
+margin_left = 3.0
+margin_top = 221.0
+margin_right = 170.0
+margin_bottom = 306.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="Panel/Options"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -76.0
+margin_top = -20.0
+margin_right = 76.0
+text = "Return to Level Select"
+
+[node name="Settings" type="Button" parent="Panel/Options"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -10.0
+margin_right = 76.0
+margin_bottom = 10.0
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Panel/Options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -76.0
+margin_right = 76.0
+margin_bottom = 20.0
+text = "Start Wave"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Control" parent="Panel"]
+margin_left = 15.0
+margin_top = 13.0
+margin_right = 104.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wave" type="Label" parent="Panel/Info"]
+margin_right = 72.0
+margin_bottom = 14.0
+text = "Wave: 1/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="Label" parent="Panel/Info"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_right = 62.0
+text = "Gold: 100g"
+
+[node name="Towers" type="Control" parent="Panel"]
+margin_left = 12.0
+margin_top = 67.0
+margin_right = 160.0
+margin_bottom = 207.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel/Towers"]
+margin_right = 72.0
+margin_bottom = 14.0
+text = "Towers"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Button" parent="Panel/Towers"]
+margin_top = 20.0
+margin_right = 49.0
+margin_bottom = 40.0
+text = "Arrow"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="Label" parent="Panel/Towers/Arrow"]
+margin_left = 64.0
+margin_top = 5.0
+margin_right = 104.0
+margin_bottom = 19.0
+text = "10g"
+__meta__ = {
+"_edit_use_anchors_": false
+}

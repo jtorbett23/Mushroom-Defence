@@ -2,6 +2,8 @@ extends Control
 
 var id
 
+
+
 func _ready():
 	AudioManager.stop_music()
 	setup("1")
@@ -20,5 +22,6 @@ func load_map(id):
 	add_child(map.instance())
 	
 func load_ui():
-	pass
+	var menu = load("res://Scenes/Menu/LevelMenu.tscn")
+	$CanvasLayer.add_child(menu.instance())
 	
