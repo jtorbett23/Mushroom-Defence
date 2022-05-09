@@ -71,7 +71,7 @@ anchor_right = 0.5
 margin_left = -76.0
 margin_right = 76.0
 margin_bottom = 20.0
-text = "Start Wave"
+text = "Start Next Wave"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -131,7 +131,7 @@ margin_left = 64.0
 margin_top = 5.0
 margin_right = 104.0
 margin_bottom = 19.0
-text = "10g"
+text = "20g"
 __meta__ = {
 "_edit_use_anchors_": false
 }

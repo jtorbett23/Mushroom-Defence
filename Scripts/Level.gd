@@ -7,7 +7,7 @@ var menu
 
 var wave_no = 1
 var wave_max = 3
-var gold_count = 100
+var gold_count = 50
 
 var waves = [5,10,15]
 

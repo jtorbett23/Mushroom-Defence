@@ -33,5 +33,5 @@ func remove_attackable(target):
 func setup(id):
 	if(id == 0):
 		type = "Arrow"
-		cost = 10
+		cost = 20
 		$Radius/CollisionShape2D.shape.radius = 50

@@ -6,6 +6,8 @@ onready var level_select = load("res://Scenes/Menu/LevelSelect.tscn")
 onready var settings = load("res://Scenes/Menu/SettingsMenu.tscn")
 var selected_tower = null
 var can_place_tower = true
+var tower_to_buy = load("res://Scenes/Tower.tscn").instance()
+var current_money
 
 func _ready():
 	AudioManager.set_music("menu")
@@ -27,16 +29,23 @@ func _ready():
 func update_text(data):
 	if(data.has("gold")):
 		$Panel/Info/Money.text = "Gold: %sg" % data.gold
+		current_money = data.gold
 	if(data.has("wave")):
 		$Panel/Info/Wave.text = "Next Wave: %s" %data.wave
 
+var no_tower_areas_inside = 0
 func no_tower_area_entered(entered_by):
-	can_place_tower = false
-	$UITower.modulate = Color("ff0000")
+	if(entered_by.get_parent().name == "UITower" and $UITower.visible == true):
+		no_tower_areas_inside  += 1
+		can_place_tower = false
+		$UITower.modulate = Color("ff0000")
 
 func no_tower_area_exited(entered_by):
-	$UITower.modulate = Color("ffffff")
-	can_place_tower = true
+	if(entered_by.get_parent().name == "UITower" and $UITower.visible == true):
+		no_tower_areas_inside  -= 1
+		if(no_tower_areas_inside  < 1):
+			$UITower.modulate = Color("ffffff")
+			can_place_tower = true
 
 func select_option(action):
 	match action:
@@ -47,10 +56,11 @@ func select_option(action):
 			#attach to canvas layer
 			$"../".add_child(settings_instance)
 		"Arrow":
+			tower_to_buy.setup(0)
 			if(selected_tower == "Arrow"):
 				selected_tower =  null
 				$UITower.visible = false
-			else:
+			elif(current_money - tower_to_buy.cost > 0):
 				selected_tower = "Arrow"
 				$UITower.visible = true
 		"Start":

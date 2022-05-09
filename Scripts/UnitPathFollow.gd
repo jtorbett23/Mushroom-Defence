@@ -5,5 +5,5 @@ func _process(delta):
 	set_offset(get_offset() + run_speed * delta)
 	if(unit_offset == 1):
 		print("path complete")
-		get_tree().queue_delete(self)
+		queue_free()
 	
