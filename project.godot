@@ -19,10 +19,10 @@ config/icon="res://icon.png"
 Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
 AudioManager="*res://Scripts/Singletons/AudioManager.gd"
+Events="*res://Scripts/Singletons/Events.gd"
 
 [display]
 
-window/size/width=768
 window/size/height=576
 
 [global]

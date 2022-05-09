@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/SideMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/LevelMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Tower_Defence_Set.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -88,7 +88,7 @@ __meta__ = {
 [node name="Wave" type="Label" parent="Panel/Info"]
 margin_right = 72.0
 margin_bottom = 14.0
-text = "Wave: 1/10"
+text = "Next Wave: 1/10"
 __meta__ = {
 "_edit_use_anchors_": false
 }
