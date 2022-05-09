@@ -93,7 +93,7 @@ extents = Vector2( 7, 119.5 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 7, 98.5 )
 
-[node name="Map 1" type="Node2D"]
+[node name="Map" type="Node2D"]
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -154,3 +154,5 @@ position = Vector2( 247, 211 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area7"]
 position = Vector2( 2, -32.5 )
 shape = SubResource( 9 )
+
+[node name="Towers" type="Node2D" parent="."]

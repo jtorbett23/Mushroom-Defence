@@ -4,11 +4,8 @@ var id
 
 func _ready():
 	AudioManager.stop_music()
-	setup("1")
 
 func setup(level_id):
-	name = "Level %s" % id
-	
 	#load the tilemap for level id
 	load_map(level_id)
 	load_ui()

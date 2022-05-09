@@ -144,28 +144,15 @@ collision_layer = 0
 position = Vector2( 79, 146.5 )
 shape = SubResource( 3 )
 
-[node name="PlacedTower" type="Sprite" parent="."]
+[node name="UITower" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
 offset = Vector2( -568, 10 )
 region_enabled = true
 region_rect = Rect2( 80, 64, 16, 16 )
 
-[node name="Area2D" type="Area2D" parent="PlacedTower"]
+[node name="Area2D" type="Area2D" parent="UITower"]
 position = Vector2( -568, 10 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacedTower/Area2D"]
-shape = SubResource( 2 )
-
-[node name="Tower" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 2 )
-offset = Vector2( -568, 10 )
-region_enabled = true
-region_rect = Rect2( 80, 64, 16, 16 )
-
-[node name="Area2D" type="Area2D" parent="Tower"]
-position = Vector2( -568, 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tower/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UITower/Area2D"]
 shape = SubResource( 2 )

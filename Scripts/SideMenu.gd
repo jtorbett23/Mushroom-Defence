@@ -25,10 +25,10 @@ func _ready():
 
 func no_tower_area_entered(entered_by):
 	can_place_tower = false
-	$Tower.modulate = Color("ff0000")
+	$UITower.modulate = Color("ff0000")
 
 func no_tower_area_exited(entered_by):
-	$Tower.modulate = Color("ffffff")
+	$UITower.modulate = Color("ffffff")
 	can_place_tower = true
 
 func select_option(action):
@@ -41,10 +41,10 @@ func select_option(action):
 		"Arrow":
 			if(selected_tower == "Arrow"):
 				selected_tower =  null
-				$Tower.visible = false
+				$UITower.visible = false
 			else:
 				selected_tower = "Arrow"
-				$Tower.visible = true
+				$UITower.visible = true
 		"Start":
 			print("trigger the next wave")
 
@@ -52,10 +52,13 @@ func _input(event):
    # Mouse in viewport coordinates.
 	if event is InputEventMouseButton and selected_tower != null:
 		if(event.pressed and can_place_tower):
-			$PlacedTower.position = get_viewport().get_mouse_position()
-			if($PlacedTower.visible == false):
-				$PlacedTower.visible = true
-				$PlacedTower/Area2D.connect("area_entered", self, "no_tower_area_entered")
-				$PlacedTower/Area2D.connect("area_exited", self, "no_tower_area_exited")
+			selected_tower =  null
+			$UITower.visible = false
+			var new_tower = load("res://Scenes/Tower.tscn").instance()
+			new_tower.position = get_viewport().get_mouse_position()
+			new_tower.get_node("Area2D").connect("area_entered", self, "no_tower_area_entered")
+			new_tower.get_node("Area2D").connect("area_exited", self, "no_tower_area_exited")
+			$"/root/Level/Map/Towers".add_child(new_tower)
 	elif event is InputEventMouseMotion:
-		$Tower.position = get_viewport().get_mouse_position()
+		var offset = Vector2(0,-20)
+		$UITower.position = get_viewport().get_mouse_position() + offset
