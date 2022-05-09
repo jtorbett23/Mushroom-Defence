@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Tower_Defence_Set.png" type="Texture" id=1]
 
@@ -72,6 +72,27 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -1, 280, 0, 0, 0, 0, 246, 281, 0, 0, 0, 0, 248, 70, 0, 0, 0, 0, 535, 71, 0, 0, 0, 0, 536, 328, 0, 0, 0, 0, 311, 328, 0, 0, 0, 0, 312, 468, 0, 0, 0, 0, 766, 473 )
 }
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 129.75, 6 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 117.5, 6 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 148, 6 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 228.5, 6 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 7, 63 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 7, 119.5 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 7, 98.5 )
+
 [node name="Map 1" type="Node2D"]
 
 [node name="Ground" type="TileMap" parent="."]
@@ -82,3 +103,54 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 2 )
+
+[node name="NoTower" type="Node2D" parent="."]
+
+[node name="Area1" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 104, 280 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area1"]
+position = Vector2( 21.25, 1 )
+shape = SubResource( 3 )
+
+[node name="Area2" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 418, 326 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area2"]
+position = Vector2( 7.5, 1 )
+shape = SubResource( 4 )
+
+[node name="Area3" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 350, 72 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area3"]
+position = Vector2( 41, 1 )
+shape = SubResource( 5 )
+
+[node name="Area4" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 415, 469 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area4"]
+position = Vector2( 121.5, 1 )
+shape = SubResource( 6 )
+
+[node name="Area5" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 311, 395 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area5"]
+position = Vector2( 2, 3 )
+shape = SubResource( 7 )
+
+[node name="Area6" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 534, 254 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area6"]
+position = Vector2( 2, -53.5 )
+shape = SubResource( 8 )
+
+[node name="Area7" type="Area2D" parent="NoTower" groups=["NoTower"]]
+position = Vector2( 247, 211 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTower/Area7"]
+position = Vector2( 2, -32.5 )
+shape = SubResource( 9 )

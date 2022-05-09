@@ -16,3 +16,4 @@ func select_option(value):
 			var new_level = level.instance()
 			new_level.setup(value)
 			FancyFade.cross_fade(new_level)
+			
