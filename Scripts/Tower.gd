@@ -26,12 +26,9 @@ func _process(delta):
 	
 func set_attackable(target):
 	targets.append(target)
-	print(targets, "are attackable")
-	
 	
 func remove_attackable(target):
 	targets.erase(target)
-	print(targets, "are attackable")
 
 func setup(id):
 	if(id == 0):
