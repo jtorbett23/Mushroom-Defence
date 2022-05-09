@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/Tower_Defence_Set.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UnitPathFollow.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 10.9918
+height = 4.00791
 
 [node name="PathFollow2D" type="PathFollow2D"]
 rotation = 0.00404987
@@ -14,3 +18,10 @@ run_speed = 40
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 64, 16, 16 )
+
+[node name="Area" type="Area2D" parent="Sprite"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area"]
+shape = SubResource( 1 )

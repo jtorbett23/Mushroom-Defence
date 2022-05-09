@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Mushroom_Defence"
-run/main_scene="res://Scenes/Menu/MainMenu.tscn"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

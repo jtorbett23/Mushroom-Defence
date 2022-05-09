@@ -17,7 +17,8 @@ func _ready():
 		match tower_button.get_class():
 			"Button":
 				tower_button.connect("pressed",self, "select_option" ,[tower_button.name])	
-	
+	$UITower.offset = -self.rect_position
+	$UITower/Area2D.position = -self.rect_position
 	var no_tower_areas = get_tree().get_nodes_in_group("NoTower")
 	for no_tower_area in no_tower_areas:
 		no_tower_area.connect("area_entered", self, "no_tower_area_entered")
@@ -62,11 +63,10 @@ func _input(event):
 			var new_tower = load("res://Scenes/Tower.tscn").instance()
 			new_tower.setup(0)
 			new_tower.position = get_viewport().get_mouse_position()
-			new_tower.get_node("Area2D").connect("area_entered", self, "no_tower_area_entered")
-			new_tower.get_node("Area2D").connect("area_exited", self, "no_tower_area_exited")
+			new_tower.get_node("NoTower").connect("area_entered", self, "no_tower_area_entered")
+			new_tower.get_node("NoTower").connect("area_exited", self, "no_tower_area_exited")
 			Events.emit_signal("user_action", "Place Tower", new_tower)
 			selected_tower =  null
 			$UITower.visible = false
 	elif event is InputEventMouseMotion:
-		var offset = Vector2(0,-20)
-		$UITower.position = get_viewport().get_mouse_position() + offset
+		$UITower.position = get_viewport().get_mouse_position()

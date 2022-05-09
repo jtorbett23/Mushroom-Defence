@@ -22,5 +22,5 @@ func handle_slider(value, slider):
 func select_option(action):
 	match action:
 		"Return":
-			get_tree().queue_delete(self)
+			queue_free()
 
