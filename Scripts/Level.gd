@@ -30,18 +30,23 @@ func handle_user_action(action, payload):
 			map.add_tower(payload)
 		"Trigger Wave":
 			trigger_wave()
+		"Unit Defeated":
+			gold_count += payload.value
+			menu.update_text({"gold": gold_count})
+			
 
 
 func trigger_wave():
-	menu.update_text({ "wave": "%s/%s" % [wave_no + 1, wave_max]})
-	print("trigger wave")
-	var spawn_timer = Timer.new()
-	add_child(spawn_timer)
-	var no_units = waves[wave_no - 1]
-	wave_no += 1	
-	var thread  = Thread.new()
-	thread.start(self, "spawn_units", no_units)
-	thread.wait_to_finish()
+	if(wave_no < wave_max):
+		menu.update_text({ "wave": "%s/%s" % [wave_no + 1, wave_max]})
+		print("trigger wave")
+		var spawn_timer = Timer.new()
+		add_child(spawn_timer)
+		var no_units = waves[wave_no - 1]
+		wave_no += 1	
+		var thread  = Thread.new()
+		thread.start(self, "spawn_units", no_units)
+		thread.wait_to_finish()
 
 var new_unit = load("res://Scenes/Unit.tscn")
 func spawn_units(no_units):

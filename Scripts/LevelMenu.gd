@@ -60,7 +60,7 @@ func select_option(action):
 			if(selected_tower == "Arrow"):
 				selected_tower =  null
 				$UITower.visible = false
-			elif(current_money - tower_to_buy.cost > 0):
+			elif(current_money - tower_to_buy.cost >= 0):
 				selected_tower = "Arrow"
 				$UITower.visible = true
 		"Start":
