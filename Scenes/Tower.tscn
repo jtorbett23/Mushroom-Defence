@@ -9,6 +9,7 @@
 radius = 50.0
 
 [node name="Tower" type="Sprite"]
+z_index = 2
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 80, 64, 16, 16 )

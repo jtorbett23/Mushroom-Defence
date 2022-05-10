@@ -14,6 +14,7 @@ var waves = [5,10,15]
 func _ready():
 	setup(1)
 	AudioManager.stop_music()
+	# warning-ignore:return_value_discarded
 	Events.connect("action", self, "handle_action")
 
 

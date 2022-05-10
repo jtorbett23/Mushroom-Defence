@@ -9,6 +9,7 @@ height = 4.00791
 
 [node name="PathFollow2D" type="PathFollow2D"]
 rotation = 0.00404987
+z_index = 2
 rotate = false
 loop = false
 script = ExtResource( 2 )

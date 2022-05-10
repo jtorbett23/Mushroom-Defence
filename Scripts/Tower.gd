@@ -9,7 +9,9 @@ var reload_time = 3
 var attack_timer = Timer.new()
 
 func _ready():
+	# warning-ignore:return_value_discarded
 	$Radius.connect("area_entered", self, "set_attackable")
+	# warning-ignore:return_value_discarded
 	$Radius.connect("area_exited", self, "remove_attackable")
 	attack_timer.connect("timeout", self, "reset_attack")
 	attack_timer.one_shot = true
@@ -18,7 +20,7 @@ func _ready():
 func reset_attack():
 	can_attack = true
 
-func _process(delta):
+func _process(_delta):
 	if(targets.size() > 0 and can_attack):
 		var unit = targets[0].get_parent().get_parent()
 		Events.emit_signal("action", "Unit Defeated", unit)
