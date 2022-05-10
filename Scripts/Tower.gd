@@ -18,27 +18,34 @@ func _ready():
 	attack_timer.one_shot = true
 	add_child(attack_timer)
 
+func setup(id):
+	if(id == 0):
+		type = "Arrow"
+		cost = 20
+		$Radius/CollisionShape2D.shape.radius = 50
+
 func reset_attack():
 	can_attack = true
 
 func _process(_delta):
 	if(targets.size() > 0):
 		var unit = targets[0]
-		var angle_to_target = get_angle_to(unit.position) * (180/PI)
-		rotation_degrees += angle_to_target + offset_angle
+		face_target(unit)
 		if(can_attack):
-			Events.emit_signal("action", "Unit Defeated", unit)
-			can_attack = false
-			attack_timer.start(reload_time)
-	
+			attack(unit)
+
+func face_target(unit):
+	var angle_to_target = get_angle_to(unit.position) * (180/PI)
+	rotation_degrees += angle_to_target + offset_angle
+
+func attack(unit):
+	Events.emit_signal("action", "Unit Defeated", unit)
+	can_attack = false
+	attack_timer.start(reload_time)
+
+
 func set_attackable(target):
 	targets.append(target.get_parent().get_parent())
 	
 func remove_attackable(target):
 	targets.erase(target.get_parent().get_parent())
-
-func setup(id):
-	if(id == 0):
-		type = "Arrow"
-		cost = 20
-		$Radius/CollisionShape2D.shape.radius = 50
