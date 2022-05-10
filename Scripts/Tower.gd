@@ -5,6 +5,7 @@ var cost
 var targets = []
 var can_attack = true
 var reload_time = 3
+var offset_angle = 180
 
 var attack_timer = Timer.new()
 
@@ -21,17 +22,20 @@ func reset_attack():
 	can_attack = true
 
 func _process(_delta):
-	if(targets.size() > 0 and can_attack):
-		var unit = targets[0].get_parent().get_parent()
-		Events.emit_signal("action", "Unit Defeated", unit)
-		can_attack = false
-		attack_timer.start(reload_time)
+	if(targets.size() > 0):
+		var unit = targets[0]
+		var angle_to_target = get_angle_to(unit.position) * (180/PI)
+		rotation_degrees += angle_to_target + offset_angle
+		if(can_attack):
+			Events.emit_signal("action", "Unit Defeated", unit)
+			can_attack = false
+			attack_timer.start(reload_time)
 	
 func set_attackable(target):
-	targets.append(target)
+	targets.append(target.get_parent().get_parent())
 	
 func remove_attackable(target):
-	targets.erase(target)
+	targets.erase(target.get_parent().get_parent())
 
 func setup(id):
 	if(id == 0):
