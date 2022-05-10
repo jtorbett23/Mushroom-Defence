@@ -1,3 +1,3 @@
 extends Node
 
-signal user_action(action, payload)
+signal action(action, payload)

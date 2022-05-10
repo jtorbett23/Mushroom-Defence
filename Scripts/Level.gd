@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 var id
 
@@ -14,7 +14,7 @@ var waves = [5,10,15]
 func _ready():
 	setup(1)
 	AudioManager.stop_music()
-	Events.connect("user_action", self, "handle_user_action")
+	Events.connect("action", self, "handle_action")
 
 
 func setup(level_id):
@@ -22,7 +22,7 @@ func setup(level_id):
 	load_map(level_id)
 	load_ui()
 
-func handle_user_action(action, payload):
+func handle_action(action, payload):
 	match action:
 		"Place Tower":
 			gold_count -= payload.cost
@@ -33,20 +33,26 @@ func handle_user_action(action, payload):
 		"Unit Defeated":
 			gold_count += payload.value
 			menu.update_text({"gold": gold_count})
+			map.remove_unit(payload)
+			if(map.get_unit_count() == 0):
+				end_wave()
+		"Unit Finish":
+			#damage player
+			map.remove_unit(payload)
+			if(map.get_unit_count() == 0):
+				end_wave()
 			
 
 
 func trigger_wave():
-	if(wave_no < wave_max):
-		menu.update_text({ "wave": "%s/%s" % [wave_no + 1, wave_max]})
-		print("trigger wave")
+	if(wave_no <= wave_max):
 		var spawn_timer = Timer.new()
 		add_child(spawn_timer)
 		var no_units = waves[wave_no - 1]
-		wave_no += 1	
 		var thread  = Thread.new()
 		thread.start(self, "spawn_units", no_units)
 		thread.wait_to_finish()
+		menu.disable_wave_button()
 
 var new_unit = load("res://Scenes/Unit.tscn")
 func spawn_units(no_units):
@@ -58,8 +64,14 @@ func spawn_units(no_units):
 
 func end_wave():
 	#at end of wave do this
-	wave_no += 1
-	menu.update_text({ "wave": "%s/%s" % [wave_no, wave_max]})
+	if(wave_no < wave_max):
+		wave_no += 1
+		menu.update_text({ "wave": "%s/%s" % [wave_no, wave_max]})
+		menu.enable_wave_button()
+	elif (wave_no == wave_max):
+		var	complete_menu = load("res://Scenes/Menu/LevelComplete.tscn").instance()
+		$UI.add_child(complete_menu)
+		print("YOU WIN")
 
 func load_map(level_id):
 	map = load("res://Scenes/Map/Map%s.tscn" % level_id).instance()
@@ -68,7 +80,7 @@ func load_map(level_id):
 func load_ui():
 	menu = load("res://Scenes/Menu/LevelMenu.tscn").instance()
 	menu.update_text({"gold": gold_count, "wave": "%s/%s" % [wave_no, wave_max]})
-	$CanvasLayer.add_child(menu)
+	$UI.add_child(menu)
 	
 
 	

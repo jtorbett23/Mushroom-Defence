@@ -21,8 +21,7 @@ func reset_attack():
 func _process(delta):
 	if(targets.size() > 0 and can_attack):
 		var unit = targets[0].get_parent().get_parent()
-		Events.emit_signal("user_action", "Unit Defeated", unit)
-		unit.queue_free()
+		Events.emit_signal("action", "Unit Defeated", unit)
 		can_attack = false
 		attack_timer.start(reload_time)
 	

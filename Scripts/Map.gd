@@ -5,4 +5,12 @@ func add_tower(tower):
 	$Towers.add_child(tower)
 
 func add_unit(unit):
-	$Path2D.add_child(unit)
+	$UnitPath.add_child(unit)
+
+func remove_unit(unit):
+	$UnitPath.remove_child(unit)
+	unit.queue_free()
+
+func get_unit_count():
+	return $UnitPath.get_child_count()
+	

@@ -57,6 +57,9 @@ func select_option(action):
 			$"../".add_child(settings_instance)
 		"Arrow":
 			tower_to_buy.setup(0)
+			no_tower_areas_inside  = 1
+			can_place_tower = false
+			$UITower.modulate = Color("ff0000")
 			if(selected_tower == "Arrow"):
 				selected_tower =  null
 				$UITower.visible = false
@@ -64,7 +67,13 @@ func select_option(action):
 				selected_tower = "Arrow"
 				$UITower.visible = true
 		"Start":
-			Events.emit_signal("user_action", "Trigger Wave", {})
+			Events.emit_signal("action", "Trigger Wave", {})
+
+func disable_wave_button():
+	$Panel/Options/Start.disabled = true
+
+func enable_wave_button():
+	$Panel/Options/Start.disabled = false
 
 func _input(event):
    # Mouse in viewport coordinates.
@@ -75,7 +84,7 @@ func _input(event):
 			new_tower.position = get_viewport().get_mouse_position()
 			new_tower.get_node("NoTower").connect("area_entered", self, "no_tower_area_entered")
 			new_tower.get_node("NoTower").connect("area_exited", self, "no_tower_area_exited")
-			Events.emit_signal("user_action", "Place Tower", new_tower)
+			Events.emit_signal("action", "Place Tower", new_tower)
 			selected_tower =  null
 			$UITower.visible = false
 	elif event is InputEventMouseMotion:
