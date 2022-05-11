@@ -5,8 +5,16 @@ onready var main_menu = load("res://Scenes/Menu/MainMenu.tscn")
 onready var level = load("res://Scenes/Level.tscn")
 
 func _ready():
+	var levels = GameData.get_levels()
+	for key in levels:
+		var level_button = Button.new()
+		level_button.text = "Level %s" % key
+		level_button.name = key
+		$Panel/Options.add_child(level_button)
+	
 	for option in options.get_children():
 		option.connect("pressed",self, "select_option" ,[option.name])
+	
 
 func select_option(value):
 	match value:

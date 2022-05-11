@@ -2,7 +2,7 @@ extends Node
 
 
 var levels = {
-	1 : {
+	"1" : {
 		"waves": [5,10,15],
 		"gold": 50
 	}
@@ -20,6 +20,9 @@ var towers = {
 
 func get_level_data(level_id, key):
 	return levels[level_id][key]
+
+func get_levels():
+	return levels
 
 func get_towers():
 	return towers
