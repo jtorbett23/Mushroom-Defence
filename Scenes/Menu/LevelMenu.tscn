@@ -102,36 +102,18 @@ text = "Gold: 100g"
 
 [node name="Towers" type="Control" parent="Panel"]
 margin_left = 12.0
-margin_top = 67.0
+margin_top = 81.0
 margin_right = 160.0
-margin_bottom = 207.0
+margin_bottom = 218.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="Panel/Towers"]
+margin_top = -20.0
 margin_right = 72.0
-margin_bottom = 14.0
+margin_bottom = -6.0
 text = "Towers"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Arrow" type="Button" parent="Panel/Towers"]
-margin_top = 20.0
-margin_right = 49.0
-margin_bottom = 40.0
-text = "Arrow"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cost" type="Label" parent="Panel/Towers/Arrow"]
-margin_left = 64.0
-margin_top = 5.0
-margin_right = 104.0
-margin_bottom = 19.0
-text = "20g"
 __meta__ = {
 "_edit_use_anchors_": false
 }

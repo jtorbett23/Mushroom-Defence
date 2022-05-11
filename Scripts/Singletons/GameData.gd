@@ -3,14 +3,14 @@ extends Node
 
 var levels = {
 	1 : {
-		"waves": [2,10,15],
-		"gold": 20
+		"waves": [5,10,15],
+		"gold": 50
 	}
 }
 
 var towers = {
-	1: {
-		"type": "Arrow",
+	"1": {
+		"type": "Ballista",
 		"reload_time": 3,
 		"cost": 20,
 		"radius": 50

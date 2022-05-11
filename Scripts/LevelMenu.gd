@@ -16,16 +16,24 @@ func _ready():
 		match option.get_class():
 			"Button":
 				option.connect("pressed",self, "select_option" ,[option.name])
-	for tower_button in towers.get_children():
-		match tower_button.get_class():
-			"Button":
-				tower_button.connect("pressed",self, "select_option" ,[tower_button.name])	
 	$UITower.offset = -self.rect_position
 	$UITower/Area2D.position = -self.rect_position
 	var no_tower_areas = get_tree().get_nodes_in_group("NoTower")
 	for no_tower_area in no_tower_areas:
 		no_tower_area.connect("area_entered", self, "no_tower_area_entered")
 		no_tower_area.connect("area_exited", self, "no_tower_area_exited")
+	var towers = GameData.get_towers()
+	for key in towers:
+		var tower_button = Button.new()
+		tower_button.text = towers[key].type
+		tower_button.name = key
+		$Panel/Towers.add_child(tower_button)
+		var cost_label = Label.new()
+		cost_label.text = str(towers[key].cost) + "g"
+		cost_label.rect_position = Vector2(tower_button.rect_size.x + 10, tower_button.rect_size.y /4)
+		tower_button.add_child(cost_label)
+		tower_button.connect("pressed",self, "select_option" ,[tower_button.name])
+		
 
 func update_text(data):
 	if(data.has("gold")):
@@ -49,6 +57,7 @@ func no_tower_area_exited(entered_by):
 			can_place_tower = true
 
 func select_option(action):
+	print(action)
 	match action:
 		"Return":
 			FancyFade.cross_fade(level_select.instance())
@@ -56,19 +65,22 @@ func select_option(action):
 			var settings_instance = settings.instance()
 			#attach to canvas layer
 			$"../".add_child(settings_instance)
-		"Arrow":
-			tower_to_buy.setup(1)
+		"Start":
+			Events.emit_signal("action", "Trigger Wave", {})
+		#it's atower
+		_:
+			print("wow")
+			print(action)
+			tower_to_buy.setup(action)
 			no_tower_areas_inside  = 1
 			can_place_tower = false
 			$UITower.modulate = Color("ff0000")
-			if(selected_tower == "Arrow"):
+			if(selected_tower == action):
 				selected_tower =  null
 				$UITower.visible = false
 			elif(current_money - tower_to_buy.cost >= 0):
-				selected_tower = "Arrow"
+				selected_tower = action
 				$UITower.visible = true
-		"Start":
-			Events.emit_signal("action", "Trigger Wave", {})
 
 func disable_wave_button():
 	$Panel/Options/Start.disabled = true
@@ -81,7 +93,7 @@ func _input(event):
 	if event is InputEventMouseButton and selected_tower != null:
 		if(event.pressed and can_place_tower):
 			var new_tower = load("res://Scenes/Tower.tscn").instance()
-			new_tower.setup(1)
+			new_tower.setup(selected_tower)
 			new_tower.position = get_viewport().get_mouse_position()
 			new_tower.get_node("NoTower").connect("area_entered", self, "no_tower_area_entered")
 			new_tower.get_node("NoTower").connect("area_exited", self, "no_tower_area_exited")
