@@ -1,7 +1,6 @@
 extends Control
 
 onready var options = $Panel/Options
-onready var towers = $Panel/Towers
 onready var level_select = load("res://Scenes/Menu/LevelSelect.tscn")
 onready var settings = load("res://Scenes/Menu/SettingsMenu.tscn")
 var selected_tower = null
@@ -11,7 +10,6 @@ var current_money
 
 func _ready():
 	AudioManager.set_music("menu")
-	#SETUP THE TOWERS
 	for option in options.get_children():
 		match option.get_class():
 			"Button":
@@ -57,7 +55,6 @@ func no_tower_area_exited(entered_by):
 			can_place_tower = true
 
 func select_option(action):
-	print(action)
 	match action:
 		"Return":
 			FancyFade.cross_fade(level_select.instance())
@@ -69,8 +66,6 @@ func select_option(action):
 			Events.emit_signal("action", "Trigger Wave", {})
 		#it's atower
 		_:
-			print("wow")
-			print(action)
 			tower_to_buy.setup(action)
 			no_tower_areas_inside  = 1
 			can_place_tower = false
