@@ -6,10 +6,11 @@ var map
 var menu 
 
 var wave_no = 1
-var wave_max = 3
-var gold_count = 50
+var waves 
+var wave_max
+var gold_count
 
-var waves = [5,10,15]
+
 
 func _ready():
 	setup(1)
@@ -20,6 +21,9 @@ func _ready():
 
 func setup(level_id):
 	#load the tilemap for level id
+	waves = GameData.get_level_data(level_id, "waves")
+	gold_count = GameData.get_level_data(level_id, "gold")
+	wave_max = waves.size()
 	load_map(level_id)
 	load_ui()
 

@@ -20,6 +20,7 @@ Transitions="*res://addons/transitions/Transitions.gd"
 FancyFade="*res://addons/transitions/FancyFade.gd"
 AudioManager="*res://Scripts/Singletons/AudioManager.gd"
 Events="*res://Scripts/Singletons/Events.gd"
+GameData="*res://Scripts/Singletons/GameData.gd"
 
 [display]
 

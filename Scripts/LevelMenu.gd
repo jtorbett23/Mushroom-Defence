@@ -11,6 +11,7 @@ var current_money
 
 func _ready():
 	AudioManager.set_music("menu")
+	#SETUP THE TOWERS
 	for option in options.get_children():
 		match option.get_class():
 			"Button":
@@ -56,7 +57,7 @@ func select_option(action):
 			#attach to canvas layer
 			$"../".add_child(settings_instance)
 		"Arrow":
-			tower_to_buy.setup(0)
+			tower_to_buy.setup(1)
 			no_tower_areas_inside  = 1
 			can_place_tower = false
 			$UITower.modulate = Color("ff0000")
@@ -80,7 +81,7 @@ func _input(event):
 	if event is InputEventMouseButton and selected_tower != null:
 		if(event.pressed and can_place_tower):
 			var new_tower = load("res://Scenes/Tower.tscn").instance()
-			new_tower.setup(0)
+			new_tower.setup(1)
 			new_tower.position = get_viewport().get_mouse_position()
 			new_tower.get_node("NoTower").connect("area_entered", self, "no_tower_area_entered")
 			new_tower.get_node("NoTower").connect("area_exited", self, "no_tower_area_exited")

@@ -4,7 +4,7 @@ var type
 var cost
 var targets = []
 var can_attack = true
-var reload_time = 3
+var reload_time 
 var offset_angle = 180
 
 var attack_timer = Timer.new()
@@ -19,10 +19,11 @@ func _ready():
 	add_child(attack_timer)
 
 func setup(id):
-	if(id == 0):
-		type = "Arrow"
-		cost = 20
-		$Radius/CollisionShape2D.shape.radius = 50
+	var tower_data = GameData.get_tower(id)
+	type = tower_data.type
+	cost = tower_data.cost
+	$Radius/CollisionShape2D.shape.radius = tower_data.radius
+	reload_time = tower_data.reload_time
 
 func reset_attack():
 	can_attack = true
