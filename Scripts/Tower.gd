@@ -6,6 +6,7 @@ var targets = []
 var can_attack = true
 var reload_time 
 var offset_angle = 180
+var projectile = load("res://Scenes/Tower/Projectile.tscn")
 
 var attack_timer = Timer.new()
 
@@ -40,7 +41,9 @@ func face_target(unit):
 	rotation_degrees += angle_to_target + offset_angle
 
 func attack(unit):
-	Events.emit_signal("action", "Unit Defeated", unit)
+	var b = projectile.instance()
+	get_tree().get_root().add_child(b)
+	b.transform = self.global_transform
 	can_attack = false
 	attack_timer.start(reload_time)
 
